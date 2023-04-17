@@ -199,14 +199,18 @@ volume passager:
 
 volume passager . communs:
   formule: volume communs / passagers
+  unité: m3
+  
 volume passager . loisirs:
   applicable si: consommation de services
   formule: surface . loisirs * hauteur pont bas / passagers
+  unité: m3
 
 volume passager . siège:
   non applicable si: cabine
   titre: Un siège dans un dortoir
   formule: hauteur pont bas * surface . siège
+  unité: m3
 
 volume passager . voiture:
   applicable si: voiture
@@ -247,39 +251,49 @@ surface . communs:
   question: Quelle est la surface des zones communes à tous les passagers ?
   description: |
     Cela inclut les escaliers, des places assises en salon hors bar ou restaurant, les couloirs intérieurs. Par convention, on n'inclut pas les surfaces extérieures non couvertes, sauf les espaces de loisir évidents : la piscine et les bars extérieurs.
-
+  unité: m2
+  
 surface . loisirs:
   injecté: oui
   question: Quelle est la surface dédiée aux loisirs ?
   description: Restaurants, bars, salons, jeux, commerces, piscines, etc.
-
+  unité: m2
+  
 hauteur moyenne garage:
   formule: (surface . garage . bas * hauteur pont bas + surface . garage . haut * hauteur pont haut) / surface . garage
-
+  unité: m
+  
 surface . garage . bas:
   injecté: oui
   question: Quelle est la surface de garage bas du bateau ?
-
+  unité: m2
+  
 surface . garage . haut:
   injecté: oui
   question: Quelle est la surface de garage haut du bateau ?
-
-surface . garage: bas + haut
+  unité: m2
+  
+surface . garage: 
+  formule: bas + haut
+  unité: m2
 
 surface . cabines:
   injecté: oui
   question: Quelle est la surface totale des cabines ?
+  unité: m2
 
 surface . sièges:
   injecté: oui
   question: Quelle est la surface totale des sièges ?
+  unité: m2
 
 volume passager . cabine partagée:
   applicable si: billet cabine
   formule: (cabines nécessaires * cabine) / groupe
 
 hauteur pont bas:
-  formule: 2.7m
+  formule: 2.7
+  
 
 hauteur pont haut:
   formule: hauteur pont bas * 2
